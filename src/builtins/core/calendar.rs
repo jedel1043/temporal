@@ -18,7 +18,7 @@ use core::str::FromStr;
 use icu_calendar::{
     cal::{
         Buddhist, ChineseTraditional, Coptic, Ethiopian, EthiopianEraStyle, Hebrew, Hijri, Indian,
-        Japanese, KoreanTraditional, Persian, Roc,
+        Japanese, Julian, KoreanTraditional, Persian, Roc,
     },
     AnyCalendar, AnyCalendarKind, Calendar as IcuCalendar, Iso, Ref,
 };
@@ -98,6 +98,8 @@ impl Calendar {
     pub const ISO: Self = Self::new(AnyCalendarKind::Iso);
     /// The Japanese calendar
     pub const JAPANESE: Self = Self::new(AnyCalendarKind::Japanese);
+    /// The Julian calendar
+    pub const JULIAN: Self = Self::new(AnyCalendarKind::Julian);
     /// The Persian calendar
     pub const PERSIAN: Self = Self::new(AnyCalendarKind::Persian);
     /// The ROC calendar
@@ -159,6 +161,7 @@ impl Calendar {
             AnyCalendarKind::Japanese | AnyCalendarKind::JapaneseExtended => {
                 const { &AnyCalendar::Japanese(Japanese::new()) }
             }
+            AnyCalendarKind::Julian => &AnyCalendar::Julian(Julian),
             AnyCalendarKind::Persian => &AnyCalendar::Persian(Persian),
             AnyCalendarKind::Roc => &AnyCalendar::Roc(Roc),
             _ => {
